@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conecta ONG - Amor e Ação Cotia</title>
+  <style>
+    :root {
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --text-color: #2d3748;
+      --border-color: #e2e8f0;
+      --primary-color: #2b6cb0;
+      --primary-hover: #2c5282;
+      --info-bg: #ebf8ff;
+      --info-border: #3182ce;
+      --info-text: #2c5282;
+    }
+
+    /* Estilos para o Modo de Alto Contraste (Acessibilidade WCAG 2.1) */
+    body.high-contrast {
+      --bg-color: #000000;
+      --card-bg: #000000;
+      --text-color: #ffff00;
+      --border-color: #ffff00;
+      --primary-color: #ffff00;
+      --primary-hover: #e6e600;
+      --info-bg: #111111;
+      --info-border: #00ffff;
+      --info-text: #00ffff;
+      font-size: 20px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      max-width: 650px;
+      background-color: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      border: 2px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 0 auto;
+    }
+
+    .accessibility-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a202c;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    body.high-contrast .accessibility-bar {
+      background: #111;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+    }
+
+    .btn-acc {
+      background: #4a5568;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    body.high-contrast .btn-acc {
+      background: #ffff00;
+      color: #000;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, button.btn-submit {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      box-sizing: border-box;
+    }
+
+    button.btn-submit {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    body.high-contrast button.btn-submit {
+      color: #000000;
+    }
+
+    .card-info {
+      background-color: var(--info-bg);
+      border-left: 4px solid var(--info-border);
+      color: var(--info-text);
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Painel de Triagem Comunitária">
+    
+    <!-- Barra de Acessibilidade -->
+    <div class="accessibility-bar" aria-live="polite">
+      <span>♿ Acessibilidade ODS 1</span>
+      <button class="btn-acc" onclick="toggleContrast()" aria-label="Alternar modo de alto contraste">
+        Alto Contraste (ALT + C)
+      </button>
+    </div>
+
+    <h2>Triagem Comunitária & Estoque Social</h2>
+    <p><strong>Associação Amor e Ação de Cotia (ODS 1 - Erradicação da Pobreza)</strong></p>
+    
+    <form id="formTriagem" onsubmit="registrarEntrega(event)">
+      <div class="form-group">
+        <label for="cpf">CPF do Beneficiário:</label>
+        <input type="text" id="cpf" placeholder="000.000.000-00" value="123.456.789-00" required aria-required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="item">Item de Assistência Básica:</label>
+        <select id="item" aria-label="Seleção de Insumo Social">
+          <option value="cesta">Cesta Básica Familiar (Estoque: 11 un - Alerta Amarelo)</option>
+          <option value="higiene">Kit de Higiene Pessoal (Estoque: 4 un - Crítico)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit" aria-label="Registrar entrega e dar baixa no estoque">
+        Registrar Entrega e Dar Baixa
+      </button>
+    </form>
+
+    <div id="statusInfo" class="card-info" tabIndex="0">
+      <strong>Status da Operação:</strong> Beneficiário elegível. Sistema pronto para emissão de comprovante e baixa em estoque.
+    </div>
+  </div>
+
+  <script>
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function registrarEntrega(event) {
+      event.preventDefault();
+      const cpf = document.getElementById('cpf').value;
+      const statusDiv = document.getElementById('statusInfo');
+      
+      statusDiv.innerHTML = `
+        <strong>Entrega Registrada com Sucesso!</strong><br>
+        Protocolo: #ACT-2026-8942 | CPF: ${cpf}<br>
+        <em>Baixa no estoque efetuada. Alerta amarelo enviado para a equipe de logística.</em>
+      `;
+    }
+  </script>
+</body>
+</html>
