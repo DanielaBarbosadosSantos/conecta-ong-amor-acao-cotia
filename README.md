@@ -15,3 +15,6 @@ MVP desenvolvido para otimizar o atendimento presencial de triagem e o controlo 
 ## 📌 Como Executar o Projecto
 1. Clona este repositório: `git clone https://github.com/seu-usuario/conecta-ong-amor-acao-cotia.git`
 2. Abre o ficheiro `index.html` no teu navegador.
+
+## MVP — Triagem e Estoque Social
+Implementação das telas de triagem presencial e controle de estoque para a Associação Amor e Ação de Cotia (ODS 1).

@@ -1,0 +1,12 @@
+{
+  "name": "conecta-ong-amor-acao-cotia",
+  "version": "1.0.0",
+  "description": "MVP de Triagem e Controle de Estoque Social",
+  "main": "triagem.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
